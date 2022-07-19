@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">To-Do Compose</string>
+    <string name="btn_add_description">button add</string>
+    <string name="list_title_tasks">Tasks</string>
+    <string name="action_search_button">search button</string>
+    <string name="filter_button">filter button</string>
+    <string name="delete_button">Delete all</string>
+    <string name="app_bar_search_placeholder">Search</string>
+    <string name="close_search_button">close search button</string>
+    <string name="content_empty">Empty content</string>
+    <string name="no_task">No tasks Found!</string>
+    <string name="add_task">Add Task</string>
+    <string name="back_arrow">Back Arrow</string>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.ToDoCompose" parent="android:Theme.Material.NoActionBar">
+        <item name="android:statusBarColor">@color/material_on_primary_disabled</item>
+    </style>
+</resources>
