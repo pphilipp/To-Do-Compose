@@ -15,4 +15,6 @@
     <string name="delete_icon">Delete icon</string>
     <string name="update_icon">Update icon</string>
     <string name="drop_down_icon">Drop-down icon</string>
+    <string name="label_title">Title</string>
+    <string name="label_description">Title</string>
 </resources>

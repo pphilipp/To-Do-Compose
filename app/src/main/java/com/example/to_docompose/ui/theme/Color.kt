@@ -27,9 +27,9 @@ val DarkGray = Color(0xFF191A1A)
 val Colors.TaskItemBackgroundColor: Color
     @Composable
     get() = if(isLight) {
-        MediumGray
-    } else {
         LightGray
+    } else {
+        Color.White
     }
 val Colors.TaskItemTextColor: Color
     @Composable

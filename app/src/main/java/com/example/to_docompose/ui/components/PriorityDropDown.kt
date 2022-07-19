@@ -2,6 +2,7 @@ package com.example.to_docompose.ui.components
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -34,11 +35,13 @@ fun PriorityDropDown(
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .background(MaterialTheme.colors.background)
             .height(PRIORITY_DROP_DOWN_SIZE)
             .clickable { expanded = true }
             .border(
                 width = 1.dp,
-                color = MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
+                color = MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled),
+                shape = MaterialTheme.shapes.small
             ),
         verticalAlignment = Alignment.CenterVertically
 
@@ -69,8 +72,7 @@ fun PriorityDropDown(
             )
         }
         DropdownMenu(
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(fraction = 0.94f),
             expanded = expanded,
             onDismissRequest = { expanded = false }
         ) {
