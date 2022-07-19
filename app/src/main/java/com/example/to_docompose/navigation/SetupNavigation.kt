@@ -8,8 +8,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.example.to_docompose.ui.viewModel.SharedViewModel
 import com.example.to_docompose.util.Constants.LIST_SCREEN
-import com.example.to_docompose.navigation.extension.listComposable
-import com.example.to_docompose.navigation.extension.taskComposable
 
 @Composable
 fun SetupNavigation(
@@ -30,7 +28,8 @@ fun SetupNavigation(
         )
 
         taskComposable(
-            navigateToListScreen = screen.list
+            navigateToListScreen = screen.list,
+            sharedViewModel = sharedViewModel
         )
     }
 }
