@@ -16,6 +16,7 @@ import com.example.to_docompose.util.Constants.LIST_ARGUMENT_KEY
 import com.example.to_docompose.util.Constants.LIST_SCREEN
 import com.example.to_docompose.util.Constants.TASK_ARGUMENT_KEY
 import com.example.to_docompose.util.Constants.TASK_SCREEN
+import com.example.to_docompose.util.toAction
 
 fun NavGraphBuilder.listComposable(
     navigateToTaskScreen: (taskId: Int) -> Unit,
@@ -26,7 +27,13 @@ fun NavGraphBuilder.listComposable(
         arguments = listOf(navArgument(LIST_ARGUMENT_KEY) {
             type = NavType.StringType
         })
-    ) {
+    ) { navBackStackEntry ->
+        val argAction = navBackStackEntry.arguments?.getString(LIST_ARGUMENT_KEY).toAction()
+
+        LaunchedEffect(key1 = argAction) {
+            sharedViewModel.action.value = argAction
+        }
+
         ListScreen(
             navigateToTaskScreen = navigateToTaskScreen,
             sharedViewModel = sharedViewModel

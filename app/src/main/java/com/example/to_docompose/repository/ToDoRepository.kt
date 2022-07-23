@@ -9,6 +9,7 @@ import javax.inject.Inject
 class ToDoRepository @Inject constructor(
     private val todoDao: ToDoDAO
 ) {
+    fun addTask(toDoTask: ToDoTask) = todoDao.addTask(toDoTask)
 
     fun getTaskById(selectedTaskId: Int) = todoDao.getTaskById(selectedTaskId)
 
@@ -24,6 +25,5 @@ class ToDoRepository @Inject constructor(
 
     fun deleteAllTasks() = todoDao.deleteAllTasks()
 
-    fun deleteAllTasks(searchQuery : String) = todoDao.search(searchQuery)
-
+    fun deleteAllTasks(searchQuery: String) = todoDao.search(searchQuery)
 }
