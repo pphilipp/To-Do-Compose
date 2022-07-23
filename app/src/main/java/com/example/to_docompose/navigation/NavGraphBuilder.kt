@@ -1,6 +1,7 @@
 package com.example.to_docompose.navigation
 
 import android.util.Log
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavGraphBuilder
@@ -47,7 +48,12 @@ fun NavGraphBuilder.taskComposable(
         sharedViewModel.getTaskById(taskId)
         val collectAsState by sharedViewModel.selectedTask.collectAsState()
 
+        LaunchedEffect(key1 = collectAsState) {
+            sharedViewModel.updateTaskFields(selectedTask = collectAsState)
+        }
+
         TaskScreen(
+            sharedViewModel = sharedViewModel,
             selectedTask = collectAsState,
             navigateToListScreen = navigateToListScreen
         )

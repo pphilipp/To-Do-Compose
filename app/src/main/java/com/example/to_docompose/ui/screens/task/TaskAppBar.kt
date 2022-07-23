@@ -150,7 +150,7 @@ fun AddAction(
 ) {
     IconButton(
         onClick = {
-            onAddClicked(Action.NO_ACTION)
+            onAddClicked(Action.ADD)
         }
     ) {
         Icon(

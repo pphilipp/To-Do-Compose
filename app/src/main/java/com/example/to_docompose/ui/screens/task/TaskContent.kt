@@ -13,6 +13,7 @@ import com.example.to_docompose.ui.theme.LARGE_PADDING
 import com.example.to_docompose.R
 import com.example.to_docompose.ui.components.PriorityDropDown
 import com.example.to_docompose.ui.theme.MEDIUM_PADDING
+import com.example.to_docompose.ui.viewModel.SharedViewModel
 
 @Composable
 fun TaskContent(
@@ -36,10 +37,12 @@ fun TaskContent(
                 onTitleChange(it)
             },
             label = {
-                Text(text = stringResource(R.string.label_title))
+                Text(
+                    text = stringResource(R.string.label_title)
+                )
             },
             textStyle = MaterialTheme.typography.body1,
-            singleLine = true
+            singleLine = true,
         )
         Divider(
             modifier = Modifier.height(MEDIUM_PADDING),
@@ -64,12 +67,5 @@ fun TaskContent(
 @Preview
 @Composable
 fun TaskContentPreview() {
-    TaskContent(
-        title = "TaskContentTitle",
-        description = "description",
-        priority = Priority.NONE,
-        onTitleChange = {},
-        onDescriptionChange = {},
-        onPrioritySelected = {}
-    )
+    TaskContent( "title preview","Description preview", Priority.NONE, {},{},{})
 }
