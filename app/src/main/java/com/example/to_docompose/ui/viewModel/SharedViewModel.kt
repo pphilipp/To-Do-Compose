@@ -71,7 +71,9 @@ class SharedViewModel @Inject constructor(
             Action.DELETE_ALL -> {
                 deleteAllTask()
             }
-            Action.UNDO -> {}
+            Action.UNDO -> {
+                addTask()
+            }
             Action.NO_ACTION -> {}
         }
         this.action.value = Action.NO_ACTION

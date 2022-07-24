@@ -33,6 +33,9 @@ fun ListScreen(
     DisplaySnackBar(
         scaffoldState = scaffoldState,
         handleDataBaseAction = { sharedViewModel.handleDataBaseActions(action = action) },
+        onUndoClicked = {
+            sharedViewModel.action.value = it
+        },
         taskTitle = sharedViewModel.title.value,
         action = action
     )
@@ -79,6 +82,7 @@ fun ListFab(
 fun DisplaySnackBar(
     scaffoldState: ScaffoldState,
     handleDataBaseAction: () -> Unit,
+    onUndoClicked: (Action) -> Unit,
     taskTitle: String,
     action: Action
 ) {
@@ -88,18 +92,53 @@ fun DisplaySnackBar(
     LaunchedEffect(key1 = action) {
         when (action) {
             Action.NO_ACTION -> {}
-
             Action.ADD,
             Action.UPDATE,
             Action.DELETE,
             Action.DELETE_ALL,
             Action.UNDO -> {
                 scope.launch {
-                    scaffoldState.snackbarHostState.showSnackbar(
+                    val snackBarResult = scaffoldState.snackbarHostState.showSnackbar(
                         message = "${action.name}: $taskTitle",
-                        actionLabel = "Ok"
+                        actionLabel = prepareActionLabel(action)
+                    )
+
+                    undoDeleteTask(
+                        action = action,
+                        snackBarResult = snackBarResult,
+                        onUndoClicked = {
+                            onUndoClicked(it)
+                        }
                     )
                 }
+            }
+        }
+    }
+}
+
+private fun prepareActionLabel(action: Action): String = when (action) {
+    Action.DELETE,
+    Action.DELETE_ALL -> {
+        "UNDO"
+    }
+    Action.ADD,
+    Action.UPDATE,
+    Action.UNDO,
+    Action.NO_ACTION -> {
+        "OK"
+    }
+}
+
+private fun undoDeleteTask(
+    action: Action,
+    snackBarResult: SnackbarResult,
+    onUndoClicked: (Action) -> Unit
+) {
+    when (snackBarResult) {
+        SnackbarResult.Dismissed -> { /** do nothing  */ }
+        SnackbarResult.ActionPerformed -> {
+            if (action == Action.DELETE) {
+                onUndoClicked(Action.UNDO)
             }
         }
     }
